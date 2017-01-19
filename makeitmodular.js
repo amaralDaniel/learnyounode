@@ -1,15 +1,13 @@
-var mymodule = require('./pathfilter');
-var fs = require('fs');
+var module = require('./mymodule');
+var dir = process.argv[2];
+var ext = process.argv[3];
 
-function to_print(err, data){
-  if(err){
-    console.log(err);
-    return;
-  }
-  for(i=0;i<data.length;i++){
-    console.log(data[i]);
-  }
-  return;
-}
+var callback = function(err, list){
+  if(err) throw(err);
 
-fs.readdir(process.argv[2],process.argv[3],process.argv[4],mymodule);
+    list.forEach(function (file){
+      console.log(file);
+    });
+};
+
+module(dir,ext,callback);
