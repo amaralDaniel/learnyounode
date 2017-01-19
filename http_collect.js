@@ -10,13 +10,9 @@ var http = require('http');
 
 function output_function(response){
   response.setEncoding('utf8');
-  //response.pipe(bl(function (err, data) { console.log(data) }))
-  console.log("Get working");
-  response.on("error",function(error){
-    console.error("Error: "+error);
-  });
-  response.on("end",function(){return;});
-
+  response.pipe(bl(function (err, data) {
+    console.log(data.length);
+    console.log(data.toString()); }));
 }
 
 http.get(process.argv[2],output_function);
