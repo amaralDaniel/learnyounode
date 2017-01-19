@@ -8,6 +8,7 @@ var http = require('http');
 
 
 function output_function(response){
+  response.setEncoding('utf8');
   response.on("data",function(data){
     console.log(data);
   });
