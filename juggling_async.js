@@ -9,20 +9,25 @@
 
 var bl = require('bl');
 var http = require('http');
+var count = 2;
 
 function output_function(response){
   response.setEncoding('utf8');
-
+  var body = "";
   response.pipe(bl(function (err, data) {
 
     if(err){
       return console.log(err);
     }
-
     console.log(data.toString());
+    count++;
+    if(count<5)
+      http.get(process.argv[count],output_function);
+    else {
+      return;
+    }
   }));
+
 }
 
-http.get(process.argv[2],output_function);
-http.get(process.argv[3],output_function);
-http.get(process.argv[4],output_function);
+http.get(process.argv[count],output_function);

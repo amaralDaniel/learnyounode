@@ -17,7 +17,6 @@ function output_function(response){
     if(err){
       return console.log(err);
     }
-
     console.log(data.length);
     console.log(data.toString()); }));
 }
