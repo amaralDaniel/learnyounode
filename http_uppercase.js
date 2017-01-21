@@ -7,14 +7,13 @@
 
 var http = require('http');
 var through2 = require('through2-map');
-var fs = require('fs');
 
-var server = http.createServer(function (err,request, response){
-  if(err) console.error(err);
+var server = http.createServer(function (request, response){
 
-  request.pipe(through2(function(data){
-    return data.toString().toUpperCase();
+  request.pipe(through2(function (chunk) {
+    return chunk.toString().toUpperCase();
   })).pipe(response);
+
 
 });
 
