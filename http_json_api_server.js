@@ -17,17 +17,18 @@ var server = http.createServer(function(request, response){
     date = new Date(query['iso']);
     response.writeHead(200,{'Content-Type':'/api/parsetime'});
     response.end( JSON.stringify({
-
        "hour":date.getHours(),
        "minute":date.getMinutes(),
        "second":date.getSeconds()
     }));
   }
 
-  // if(url.pathname == '/api/unixtime'){
-  //   response.writeHead(200,{'Content-Type':'/api/unixtime'});
-  //   response.end( JSON.stringify({"unixtime": new Date().getTime()}));
-  // }
+  if(url.pathname == '/api/unixtime'){
+    response.writeHead(200,{'Content-Type':'/api/unixtime'});
+    response.end( JSON.stringify({
+      "unixtime": date.getTime()
+    }));
+  }
 
 
 
