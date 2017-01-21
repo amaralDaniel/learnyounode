@@ -7,8 +7,6 @@ var fs = require('fs');
 
 var server = http.createServer(function (request, response){
   var fileStream = fs.createReadStream(process.argv[3]);
-
-  console.log(fileStream);
   fileStream.pipe(response);
 });
 
